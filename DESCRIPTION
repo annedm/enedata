@@ -1,0 +1,12 @@
+Package: enedata
+Type: Package
+Title: Récupération Données Open Data Enedis
+Version: 0.1.0
+Author: Anne De Moliner (anne.de-moliner@enedis.fr)
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Récupération de données de consommation et production électrique en open data proposées par Enedis à des mailles locales (Région, commune, département, EPCI, commune ou iris)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat
