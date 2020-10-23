@@ -1,0 +1,75 @@
+---
+title: "Données annuelles de consommation et production électrique fournies par Enedis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{donnees_enedis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  include = FALSE,
+  comment = "#>"
+)
+```
+
+
+```{r setup}
+knitr::opts_chunk$set(eval = FALSE, include = FALSE)
+
+library(enedata)
+```
+
+
+Ce package permet de récupérer certaines données fournies par Enedis en open data et disponible à l'adresse https://data.enedis.fr/explore/.
+On peut ainsi récupérer les données de consommation et production annuelles, par commune, EPCI, département ou région.
+Pour consulter des visualisations de ces données, on pourra aller sur le site https://www.enedis.fr/open-data.
+
+
+## Consommations
+
+### Récupération des consommations par communes
+
+Pour récupérer les consommations annuelles d'une commune, il faut entrer
+son nom ainsi que l'année souhaitée. 
+```{r}
+conso_an <- get_conso_an_commune(annee = 2018,
+                                 commune = 'Paris')
+
+str(conso_an)
+summary(conso_an)
+```
+
+Afin d'alléger les résultats, on ne récupère pas les coordonnées géographiques associées. Si on souhaite les avoir, il faut utiliser l'argument `with_coord = TRUE`.
+```{r}
+conso_an <- get_conso_an_commune(
+ annee = 2017,
+  ville = 'Besançon'
+ ,with_coord = TRUE)
+```
+
+
+Il est également possible de récupérer toutes les années disponibles, en 
+ommettant l'argument `annee`
+
+```{r}
+conso_an <- get_conso_an_commune(commune = 'Paris')
+
+head(conso_an)
+```
+
+### Consommations par EPCI, région ou département
+TODO A compléter
+
+## Productions
+
+La récupération des productions annuelles, par filière, fonctionne sur le même modèle.
+```{r}
+prod_an <- get_prod_an_commune(
+  annee = 2019,
+  commune = 'Besançon'
+  )
+```
+

@@ -1,3 +1,10 @@
 usethis::use_data_raw()
-usethis::use_agpl3_license('Anne De Moliner')
+usethis::use_agpl3_license("Anne De Moliner")
 usethis::use_testthat()
+usethis::use_tidy_style() #styling according to the tidyverse style guide
+usethis::use_vignette('donnees_enedis')
+usethis::use_test('test_conso_an')
+usethis::use_test('test_energie_an')
+usethis::use_test('clean_name')
+usethis::use_test('test_conso_prod_par_maille')
+usethis::use_test('test_get_listes')

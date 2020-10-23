@@ -1,12 +1,16 @@
 Package: enedata
-Type: Package
-Title: Récupération Données Open Data Enedis
-Version: 0.1.0
-Author: Anne De Moliner (anne.de-moliner@enedis.fr)
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Récupération de données de consommation et production électrique en open data proposées par Enedis à des mailles locales (Région, commune, département, EPCI, commune ou iris)
-License: GPL-3
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
 Encoding: UTF-8
 LazyData: true
-Suggests: 
-    testthat
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
