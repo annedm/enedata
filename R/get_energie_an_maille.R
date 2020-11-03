@@ -19,6 +19,13 @@ get_energie_an_maille <- function(
   
   
   ##check des arguments : TODO
+  if(!missing(annee)){
+    assert_that(as.integer(annee)==annee)
+  }
+  assert_that(maille %>% in c('departement', 'commune', 'region'))
+  assert_that(class(prod)==logical)
+  assert_that(length(nom_maille)==1)
+  assert_that(is.character(nom_maille))
    
   
   ## mise en forme de la nom_maille
@@ -26,9 +33,69 @@ get_energie_an_maille <- function(
   
   ###adaptation de l'url a ce qu on cherche
   
+  ##l'url initiale
+  if(maille=='commune'){
+    adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-commune&q=&rows=-1'
+  }
+  if(maille=='departement'){
+    adr <-'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-departement&q=&rows=-1'
+  }
+  if(maille=='region'){
+    adr <-'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-region&q=&rows=-1'
+  }
+  
+  ##dans tous les cas : adapter a la maille qu'on cherche
+  adr <-paste0(adr, '&refine.nom_', maille, '=', nom_maille)
+  
   ###recuperation des donnees et mise en forme 
   
-  #stop si erreur 
+  if(!missing(annee)){
+    adr <- paste0(adr, '&refine.annee=', as.character(annee))
+  }
+  
+  
+  
+  if(verbose){
+    print(paste0('Recuperation de l url : ', adr))
+  }
+  
+  
+  brut <- GET(adr)
+  
+  ##arret si il y a une erreur
+  if(http_error(brut)){
+    stop(http_status(brut))
+  }
+  
+  
+  ##extraction du contenu et mise sous forme de dataframe
+  contenu <- brut$content
+  
+  liste <- fromJSON(rawToChar(contenu))
+  
+  ##supprimer les variables qui contiennent les geom.coordinates 
+  ##si pas demande 
+  df_conso <- lapply(liste$records
+                     ,FUN = function(rec){
+                       
+                       out <- as.data.frame(rec$fields) %>%
+                         mutate_if(is.factor, as.character)
+                       
+                       if(!with_coord){
+                         out <- out %>% select(-contains('geom.coord'))
+                       }
+                       
+                       
+                       out
+                     }) %>% bind_rows()
+  
+  ##warning si aucune donnees recuperee
+  if(nrow(df_conso)==0){
+    warning('Pas de donnees recuperees')
+  }
+  
+  
+  df_conso
   
   ##recuperer les bonnees donnees 
   NULL 

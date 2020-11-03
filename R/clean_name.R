@@ -9,10 +9,11 @@
 clean_name <- function(name){
   
   ##supprimer les blancs en trop 
-  name <- name  
+  name <- str_trim(name)
+  name <- str_replace_all(string=name, pattern="\\s+", replacement = " ")
   
   ##mettre la premiere lettre seulement en majuscule
-  
+  substr(name, 1, 1) <- toupper(substr(name, 1, 1))
   
   name
 }
