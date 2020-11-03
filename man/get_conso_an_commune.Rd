@@ -10,6 +10,8 @@ get_conso_an_commune(annee, commune, with_coord = FALSE, verbose = FALSE)
 \arguments{
 \item{annee}{entier, annee a recuperer (si missing, toutes)}
 
+\item{commune}{character, le nom de la commune}
+
 \item{with_coord}{booleen, est ce qu'on doit récupérer les coordonnées}
 
 \item{verbose}{booleen qui indique si on print l'url}

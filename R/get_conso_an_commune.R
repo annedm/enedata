@@ -2,17 +2,15 @@
 #' d'une commune
 #'
 #' @param annee entier, annee a recuperer (si missing, toutes)
-#' @param commune character, commune a recuperer
 #' @param verbose booleen qui indique si on print l'url
 #' @param with_coord booleen, est ce qu'on doit récupérer les coordonnées
-#'
+#' @param commune character, le nom de la commune
 #' @return data frame avec en ligne les données de consommation par commune x segment de clientèle
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom httr GET http_error http_status
 #' @importFrom rjson fromJSON
 #' @import dplyr
-#' @import magrittr
 #' @examples
 #' get_conso_an_commune(annee = 2016, commune = 'Valenciennes')
 #' get_conso_an_commune( commune = 'paris')
@@ -24,10 +22,10 @@ get_conso_an_commune <- function(annee,
   
 
   ##check des arguments
-  if (!missing(annee)){
-    assert_that(as.integer(annee) == annee)
-    
-  }
+  #if (!missing(annee)){
+  #  assert_that(as.integer(annee) == annee)
+  #  
+  #}
    assert_that(is.character(commune))
   assert_that(length(commune) == 1)
   
@@ -36,7 +34,6 @@ get_conso_an_commune <- function(annee,
   
   ##l url initiale
   adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-commune&q=&rows=-1'
-  
   
   adr <- paste0(adr, '&refine.nom_commune=', commune)
   
