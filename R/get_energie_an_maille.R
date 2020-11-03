@@ -7,7 +7,9 @@
 #' @param nom_maille character, nom de la maille à récupérer
 #' @param prod booleen qui indique si on récupère la conso (FALSE, defaut) ou la prod (TRUE)
 #' @return data frame avec en ligne les données de consommation par nom_maille x segment de clientèle
+#' @importFrom stringr
 #' @export
+
 get_energie_an_maille <- function(
                      annee,
                      maille,
@@ -36,19 +38,27 @@ get_energie_an_maille <- function(
   ##l url initiale
   if (maille == 'commune'){
     adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-commune&q=&rows=-1'
-    
   }
   if (maille == 'departement'){
     adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-departement&q=&rows=-1'
   }
-  
-  ## cas de la maille region 
   if (maille == 'region'){
-    
+    adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=consommation-electrique-par-secteur-dactivite-region&q=&rows=-1'
   }
+
   
+  # Cas où on s'intéresse à la production
   if (prod){
-    ##TODO: aller chercher les donnees de production au lieu des consos
+    if (maille == 'commune'){
+      adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=production-electrique-par-filiere-a-la-maille-commune&q=&facet=annee&facet=nom_region&facet=code_commune&facet=domaine_de_tension'
+    }
+    if (maille == 'departement'){
+      adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=production-electrique-par-filiere-a-la-maille-departement&q=&facet=annee&facet=nom_region&facet=code_region&facet=domaine_de_tension'
+    }
+    if (maille == 'region'){
+      adr <- 'https://data.enedis.fr/api/records/1.0/search/?dataset=production-electrique-par-filiere-a-la-maille-region&q=&facet=annee&facet=nom_region&facet=code_region&facet=domaine_de_tension'
+    }
+    
   }
 
   ##dans tous les cas: adapter a la maille qu'on cherche 
