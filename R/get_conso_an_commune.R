@@ -17,10 +17,10 @@ get_conso_an_commune <- function(annee,
                                  verbose = FALSE){
   
   
-  ##check des arguments : TODO
+  ## check des arguments : TODO
   
   
-  ## TODO mise en forme de la commune ('paris' doit passer) 
+  ## DANS UN SECOND TEMPS :TODO mise en forme de la commune ('paris' doit passer) 
   commune <- clean_name(commune)
   
   ##TODO : changer l url pour recuperer la bonne ville  et la bonne annee (ici c'est lille)
@@ -37,14 +37,14 @@ get_conso_an_commune <- function(annee,
   brut <- GET(adr)
   
   ##TODO: arret si il y a une erreur
-  
+  # utiliser httr::status
   
   ##extraction du contenu et mise sous forme de dataframe
   contenu <- brut$content
   
   liste <- fromJSON(rawToChar(contenu))
   
-  ##TODO: supprimer les variables qui contiennent les geom.coordinates 
+  ## TODO: supprimer les variables qui contiennent les geom.coordinates 
   ##si pas demande 
   df_conso <- lapply(liste$records
                      ,FUN = function(rec){
@@ -56,7 +56,7 @@ get_conso_an_commune <- function(annee,
                        out
                      }) %>% bind_rows()
   
-  ##TODO warning si aucune donnees recuperee
+  ## TODO warning si aucune donnees recuperee
  
   
   df_conso
