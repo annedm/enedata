@@ -8,7 +8,7 @@
 #' @param prod booleen qui indique si on récupère la conso (FALSE, defaut) ou la prod (TRUE)
 #' @return data frame avec en ligne les données de consommation par nom_maille x segment de clientèle
 #' @export
-get_energie_an_maille <- function(
+getEnergieAnMaille <- function(
                      annee,
                      maille,
                      nom_maille,
@@ -22,7 +22,7 @@ get_energie_an_maille <- function(
    
   
   ## mise en forme de la nom_maille
-  nom_maille <- clean_name(nom_maille)
+  nom_maille <- cleanName(nom_maille)
   
   ###adaptation de l'url a ce qu on cherche
   

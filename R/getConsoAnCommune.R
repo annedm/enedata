@@ -8,10 +8,10 @@
 #' @return data frame avec en ligne les données de consommation par commune x segment de clientèle
 #' @export
 #' @examples
-#' get_conso_an_commune(annee = 2016, commune = 'Valenciennes')
-#' get_conso_an_commune( commune = 'paris')
+#' getConsoAnCommune(annee = 2016, commune = 'Valenciennes')
+#' getConsoAnCommune( commune = 'paris')
 
-get_conso_an_commune <- function(annee,
+getConsoAnCommune <- function(annee,
                                  commune ,
                                  with_coord = FALSE,
                                  verbose = FALSE){
@@ -21,7 +21,7 @@ get_conso_an_commune <- function(annee,
   
   
   ## DANS UN SECOND TEMPS :TODO mise en forme de la commune ('paris' doit passer) 
-  commune <- clean_name(commune)
+  commune <- cleanName(commune)
   
   ##TODO : changer l url pour recuperer la bonne ville  et la bonne annee (ici c'est lille)
   ##l url initiale 

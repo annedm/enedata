@@ -5,8 +5,8 @@
 #' @return chaine de caractère avec une majuscule en premier, plus d espace superflu
 #' @export
 #' @examples
-#' clean_name(' il y  a des espaces    en trop! ')
-clean_name <- function(name){
+#' cleanName(' il y  a des espaces    en trop! ')
+cleanName <- function(name){
   
   ##supprimer les blancs en trop 
   name <- name  

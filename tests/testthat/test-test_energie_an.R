@@ -3,7 +3,7 @@
 
 test_that('ok pour les regions, consommation',
     expect_equal_to_reference(
-          get_energie_an_maille(
+          getEnergieAnMaille(
             annee = 2017,
             maille = 'region',
             nom_maille = 'Bretagne',
@@ -14,7 +14,7 @@ test_that('ok pour les regions, consommation',
 
 test_that('ok pour les departements, production',{
           
-          result <-   get_energie_an_maille(
+          result <-   getEnergieAnMaille(
             annee = 2018,
             maille = 'departement',
             nom_maille = 'Doubs',
@@ -30,7 +30,7 @@ test_that('ok pour les departements, production',{
 
 test_that('erreur si maille incorrecte',{
   expect_error(
-    get_energie_an_maille(
+    getEnergieAnMaille(
       annee = 2018,
       maille = 'coucou',
       nom_maille = 'CA Amiens Métropole',
