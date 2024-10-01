@@ -5,10 +5,10 @@
 \title{Récupération des données de consommation électrique annuelle
 d'une commune}
 \usage{
-getConsoAnCommune(annee, commune, with_coord = FALSE, verbose = FALSE)
+getConsoAnCommune(annee_choisie, commune, with_coord = FALSE, verbose = FALSE)
 }
 \arguments{
-\item{annee}{entier, annee a recuperer (si missing, toutes)}
+\item{annee_choisie}{entier, annee a recuperer (si missing, toutes)}
 
 \item{with_coord}{booleen, est ce qu'on doit récupérer les coordonnées}
 

@@ -1,24 +1,29 @@
 #' Récupération des données de consommation électrique annuelle
 #' d'une commune
 #'
-#' @param annee entier, annee a recuperer (si missing, toutes)
+#' @param annee_choisie entier, annee a recuperer (si missing, toutes)
 #' @param verbose booleen qui indique si on print l'url
 #' @param with_coord booleen, est ce qu'on doit récupérer les coordonnées
 #'
 #' @return data frame avec en ligne les données de consommation par commune x segment de clientèle
 #' @export
+#' @import dplyr
+#' @import rjson
+#' @import httr
+#' @importFrom assertthat assert_that
 #' @examples
 #' getConsoAnCommune(annee = 2016, commune = 'Valenciennes')
 #' getConsoAnCommune( commune = 'paris')
 
-getConsoAnCommune <- function(annee,
-                              commune ,
+getConsoAnCommune <- function(annee_choisie,
+                              commune,
                               with_coord = FALSE,
                               verbose = FALSE){
   
   
   ## check des arguments : TODO
-  
+  assertthat::assert_that(as.integer(annee_choisie)== annee_choisie) 
+  assertthat::assert_that(is.character(commune))
   
   ## DANS UN SECOND TEMPS :TODO mise en forme de la commune ('paris' doit passer) 
  # commune <- cleanName(commune)
@@ -55,6 +60,10 @@ getConsoAnCommune <- function(annee,
                        
                        out
                      }) %>% bind_rows()
+  
+  ## filtrer les annees
+  df_conso <- df_conso %>% 
+    filter(annee == annee_choisie)
   
   ## TODO warning si aucune donnees recuperee
  

@@ -3,3 +3,7 @@
 export(cleanName)
 export(getConsoAnCommune)
 export(getEnergieAnMaille)
+import(dplyr)
+import(httr)
+import(rjson)
+importFrom(assertthat,assert_that)
