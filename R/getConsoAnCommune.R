@@ -12,16 +12,16 @@
 #' getConsoAnCommune( commune = 'paris')
 
 getConsoAnCommune <- function(annee,
-                                 commune ,
-                                 with_coord = FALSE,
-                                 verbose = FALSE){
+                              commune ,
+                              with_coord = FALSE,
+                              verbose = FALSE){
   
   
   ## check des arguments : TODO
   
   
   ## DANS UN SECOND TEMPS :TODO mise en forme de la commune ('paris' doit passer) 
-  commune <- cleanName(commune)
+ # commune <- cleanName(commune)
   
   ##TODO : changer l url pour recuperer la bonne ville  et la bonne annee (ici c'est lille)
   ##l url initiale 
@@ -34,7 +34,7 @@ getConsoAnCommune <- function(annee,
   
   
   
-  brut <- GET(adr)
+  brut <- httr::GET(adr)
   
   ##TODO: arret si il y a une erreur
   # utiliser httr::status
@@ -42,7 +42,7 @@ getConsoAnCommune <- function(annee,
   ##extraction du contenu et mise sous forme de dataframe
   contenu <- brut$content
   
-  liste <- fromJSON(rawToChar(contenu))
+  liste <- rjson::fromJSON(rawToChar(contenu))
   
   ## TODO: supprimer les variables qui contiennent les geom.coordinates 
   ##si pas demande 
