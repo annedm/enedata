@@ -21,7 +21,7 @@ getConsoAnCommune <- function(annee_choisie,
                               verbose = FALSE){
   
   
-  ## check des arguments : TODO
+  ## check des arguments : 
   assertthat::assert_that(as.integer(annee_choisie)== annee_choisie) 
   assertthat::assert_that(is.character(commune))
   
