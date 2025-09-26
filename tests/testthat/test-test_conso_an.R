@@ -4,7 +4,7 @@ library(stringr)
 
 
 test_that("fonctionne si arguments ok", {
-  expect_equal_to_reference(
+  expect_snapshot(
     getConsoAnCommune(annee = 2019,
                  commune = 'Paris'),
     'resultat_paris.RDS'
