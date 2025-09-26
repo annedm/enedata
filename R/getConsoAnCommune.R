@@ -37,7 +37,7 @@ getConsoAnCommune <- function(annee,
   brut <- GET(adr)
   
   ##TODO: arret si il y a une erreur
-  # utiliser httr::status
+  # utiliser httr::status_code
   
   ##extraction du contenu et mise sous forme de dataframe
   contenu <- brut$content

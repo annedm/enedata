@@ -4,12 +4,14 @@
 #'
 #' @return chaine de caractère avec une majuscule en premier, plus d espace superflu
 #' @export
+#' @import stringr
+#' @import magrittr
 #' @examples
 #' cleanName(' il y  a des espaces    en trop! ')
 cleanName <- function(name){
   
   ##supprimer les blancs en trop 
-  name <- name  
+  name <- name %>% str_replace_all(pattern = " ", replacement = "")
   
   ##mettre la premiere lettre seulement en majuscule
   

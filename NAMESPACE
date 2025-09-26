@@ -3,3 +3,5 @@
 export(cleanName)
 export(getConsoAnCommune)
 export(getEnergieAnMaille)
+import(magrittr)
+import(stringr)
